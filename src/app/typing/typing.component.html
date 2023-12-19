@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="column">
+    <h1>Typing Challenge!</h1>
+    <p class="random-text">
+      <span
+        [class]="compare(char, enteredInput[i])"
+        *ngFor="let char of randomText.split(''); let i = index"
+        >{{ char }}</span
+      >
+    </p>
+    <!--    <input type="text" [value]="enteredInput" (input)="onInputChange($event)" />-->
+    <input
+      type="text"
+      [value]="enteredInput"
+      (input)="onInputChange($event)"
+      [disabled]="enteredInput.length === randomText.length"
+    />
+    <h1
+      [ngStyle]="{
+        visibility:
+          enteredInput.length >= randomText.length ? 'visible' : 'hidden',
+        color:
+          enteredInput.length === randomText.length &&
+          enteredInput !== randomText
+            ? 'red'
+            : 'green'
+      }"
+    >
+      {{ enteredInput === randomText ? "Success!" : "Failed!" }}
+    </h1>
+    <div>
+      <button (click)="onChangeText()" class="myButton">Change Text</button>
+    </div>
+  </div>
+</div>
